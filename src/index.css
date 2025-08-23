@@ -2,41 +2,79 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
-All colors MUST be HSL.
-*/
+/* Sports Tournament Manager Design System - All colors MUST be HSL */
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
+    /* Base colors - Professional sports theme */
+    --background: 220 20% 97%;
+    --foreground: 220 90% 8%;
 
+    /* Card system - Clean and modern */
     --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
+    --card-foreground: 220 90% 8%;
+    --card-hover: 220 15% 95%;
 
+    /* Popover system */
     --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
+    --popover-foreground: 220 90% 8%;
 
-    --primary: 222.2 47.4% 11.2%;
-    --primary-foreground: 210 40% 98%;
+    /* Primary - Deep sports blue */
+    --primary: 220 85% 35%;
+    --primary-foreground: 220 15% 98%;
+    --primary-hover: 220 85% 30%;
+    --primary-glow: 220 85% 65%;
 
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
+    /* Secondary - Professional gray */
+    --secondary: 220 10% 90%;
+    --secondary-foreground: 220 90% 15%;
+    --secondary-hover: 220 10% 85%;
 
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
+    /* Muted - Subtle backgrounds */
+    --muted: 220 15% 92%;
+    --muted-foreground: 220 20% 45%;
 
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
+    /* Accent - Vibrant emerald for success states */
+    --accent: 160 85% 40%;
+    --accent-foreground: 160 15% 98%;
+    --accent-hover: 160 85% 35%;
+    --accent-glow: 160 85% 70%;
 
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
+    /* Status colors for matches */
+    --match-live: 0 85% 55%;
+    --match-live-foreground: 0 15% 98%;
+    --match-scheduled: 45 85% 55%;
+    --match-scheduled-foreground: 45 15% 98%;
+    --match-completed: 160 85% 40%;
+    --match-completed-foreground: 160 15% 98%;
 
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 222.2 84% 4.9%;
+    /* Destructive - Warning red */
+    --destructive: 0 85% 55%;
+    --destructive-foreground: 0 15% 98%;
 
-    --radius: 0.5rem;
+    /* Borders and inputs */
+    --border: 220 20% 85%;
+    --input: 220 20% 85%;
+    --ring: 220 85% 35%;
+
+    /* Gradients - Sports themed */
+    --gradient-primary: linear-gradient(135deg, hsl(220 85% 35%), hsl(220 85% 50%));
+    --gradient-accent: linear-gradient(135deg, hsl(160 85% 40%), hsl(160 85% 55%));
+    --gradient-hero: linear-gradient(135deg, hsl(220 85% 35%), hsl(160 85% 40%));
+    --gradient-card: linear-gradient(145deg, hsl(0 0% 100%), hsl(220 15% 98%));
+
+    /* Shadows - Professional depth */
+    --shadow-sm: 0 2px 4px hsl(220 20% 20% / 0.08);
+    --shadow-md: 0 4px 12px hsl(220 20% 20% / 0.12);
+    --shadow-lg: 0 8px 24px hsl(220 20% 20% / 0.15);
+    --shadow-glow: 0 0 24px hsl(220 85% 35% / 0.3);
+    --shadow-accent: 0 4px 16px hsl(160 85% 40% / 0.3);
+
+    /* Animations */
+    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-spring: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+
+    --radius: 0.75rem;
 
     --sidebar-background: 0 0% 98%;
 
@@ -100,6 +138,64 @@ All colors MUST be HSL.
   }
 
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground font-sans;
+    background: var(--gradient-card);
+  }
+
+  /* Tournament-specific animations */
+  @keyframes slideInRight {
+    from {
+      opacity: 0;
+      transform: translateX(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+
+  @keyframes slideInUp {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes pulse {
+    0%, 100% {
+      opacity: 1;
+    }
+    50% {
+      opacity: 0.7;
+    }
+  }
+
+  @keyframes matchGlow {
+    0%, 100% {
+      box-shadow: var(--shadow-md);
+    }
+    50% {
+      box-shadow: var(--shadow-glow);
+    }
+  }
+
+  .animate-slide-in-right {
+    animation: slideInRight 0.5s ease-out;
+  }
+
+  .animate-slide-in-up {
+    animation: slideInUp 0.5s ease-out;
+  }
+
+  .animate-pulse-soft {
+    animation: pulse 2s ease-in-out infinite;
+  }
+
+  .animate-match-glow {
+    animation: matchGlow 2s ease-in-out infinite;
   }
 }
